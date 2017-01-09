@@ -1,11 +1,12 @@
 html{display: flex;justify-content:center;}
 body
 {
-	font-size: 14px;
+	font-size: 12px;
 	width: 1024px;
 	max-width: 100%;
 	padding: 0 1em;
 }
+.navbar{padding-left: 0 !important;}
 h2{background: #ccc;box-shadow: 2px 2px inset #555}
 span{font-weight: bold;}
 h2,h3,p{margin: 0;padding: .5em}
