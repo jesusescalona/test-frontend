@@ -3,14 +3,103 @@
 	<head>
 	    <title>Listar Datos</title>
 	    <meta charset="utf-8"/>
+	    <!-- <link rel="stylesheet" type="text/css" href="css/normalize.css" /> -->
 	    <link rel="stylesheet" type="text/css" href="css/style.css" />
-	    <link rel="stylesheet" type="text/css" href="css/normalize.css" />
-		<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAG45aDINdqzFMDrSJNuRjVDz1OEXu-fwI"></script>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap-grid.css" />
 	</head>
 	<body>
-		<section ng-controller="appCtrlClients">
+		<section class="container-fluid" ng-controller="appCtrlClients">
+			<section class="row">
+				<nav class="navbar nav nav-pills flex-column flex-sm-row">
+					<a class="flex-sm-fill nav-link active" active="on" data-toggle="tab" href="#clientsActive" role="tab">Actives</a>
+					<a class="flex-sm-fill nav-link" active="off" data-toggle="tab" href="#clientsInactive" role="tab">Inactives</a>
+				</nav>
+				<div class="tab-content">
+					<div class="tab-pane active" id="clientsActive" role="tabpanel">
+						<section>
+							<article>
+								<h1>Active Clients</h1>
+							</article>
+							<ul>
+								<li ng-repeat="list in clientsAct">
+									<h2>Id: {{ list.id }}</h2>
+									<h3>Status: {{ list.isActive }}</h3>
+									<p><span>Name:</span> {{ list.name }}</p>
+									<p><span>Age:</span> {{ list.age }}</p>
+									<p><span>Gender:</span> {{ list.gender }}</p>
+									<p><span>Phone:</span> {{ list.phone }}</p>
+									<p><span>Email:</span> {{ list.email }}</p>
+									<h2>Customer Friends List</h2>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<ul>
+								<li ng-repeat="list in clientsAct.friends">
+									<h2>Id:{{ list.id }}</h2>
+									<p><span>Name:</span> {{ list.name }}</p>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<ul>
+								<li ng-repeat="myMakersAct in markersAct">
+									<h2>Customer Location</h2>
+									<ng-map zoom="{{myMakersAct.zoom}}" center="[{{myMakersAct.latitude}} , {{myMakersAct.longitude}}]">
+										<marker position="[{{myMakersAct.latitude}} , {{myMakersAct.longitude}}]" />
+										<shape name="circle" radius="400" center="[{{myMakersAct.latitude}} , {{myMakersAct.longitude}}]" radius="4000" />
+										<control name="overviewMap" opened="true" />
+									</ng-map>
+								</li>
+							</ul>
+						</section>
+					</div>
+					<div class="tab-pane active" id="clientsInactive" role="tabpanel">
+						<section>
+							<h1>Inactive Clients</h1>
+							<ul>
+								<li ng-repeat="list in clientsInc">
+									<h2>Id: {{ list.id }}</h2>
+									<h3>Status: {{ list.isActive }}</h3>
+									<p><span>Name:</span> {{ list.name }}</p>
+									<p><span>Age:</span> {{ list.age }}</p>
+									<p><span>Gender:</span> {{ list.gender }}</p>
+									<p><span>Phone:</span> {{ list.phone }}</p>
+									<p><span>Email:</span> {{ list.email }}</p>
+									<h2>Customer Friends List</h2>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<ul>
+								<li ng-repeat="list in clientsInc.friends">
+									<h2>Id:{{ list.id }}</h2>
+									<p><span>Name:</span> {{ list.name }}</p>
+								</li>
+							</ul>
+						</section>
+						<section>
+							<ul>
+								<li ng-repeat="myMakersInc in markersInc">
+									<h2>Customer Location</h2>
+									<ng-map zoom="{{myMakersInc.zoom}}" center="[{{myMakersInc.latitude}} , {{myMakersInc.longitude}}]">
+										<marker position="[{{myMakersInc.latitude}} , {{myMakersInc.longitude}}]" />
+										<shape name="circle" radius="400" center="[{{myMakersInc.latitude}} , {{myMakersInc.longitude}}]" radius="4000" />
+										<control name="overviewMap" opened="true" />
+									</ng-map>
+								</li>
+							</ul>
+						</section>	
+					</div>
+				</div>
+			</section>
+		</section>
+		<!-- <section ng-controller="appCtrlClients">
 			<section>
-				<h1>Active Clients</h1>
+				<article>
+					<h1>Active Clients</h1>
+				</article>
 				<ul>
 					<li ng-repeat="list in clientsAct">
 						<h2>Id: {{ list.id }}</h2>
@@ -44,6 +133,7 @@
 					</li>
 				</ul>
 			</section>
+		
 			<section>
 				<h1>Inactive Clients</h1>
 				<ul>
@@ -79,7 +169,7 @@
 					</li>
 				</ul>
 			</section>
-		</section>
+		</section> -->
 		<footer>
 			&copy;Copy Right Jesus Escalona 
 		</footer>
@@ -87,4 +177,8 @@
 	<script src="js/angular.js"></script>
 	<script src="js/app.js"></script>
 	<script src="js/ng-map.min.js"></script>
+	<script src="js/jquery-3.1.1.min.js"></script>
+	<script src="js/bootstrap.js"></script>
+	<script src="js/scripts.js"></script>
+	<script src="https://maps.googleapis.com/maps/api/js?libraries=places&key=AIzaSyAG45aDINdqzFMDrSJNuRjVDz1OEXu-fwI"></script>
 </html>
